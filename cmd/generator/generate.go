@@ -81,7 +81,7 @@ func replaceExternalPackages(in []byte) []byte {
 	in = bytes.ReplaceAll(in, []byte(`nullable.Bool`), []byte(`*bool`))
 	in = bytes.ReplaceAll(in, []byte(`nullable.Float64`), []byte(`*float64`))
 	in = bytes.ReplaceAll(in, []byte(`nullable.Int `), []byte(`*int `))
-	in = bytes.ReplaceAll(in, []byte(`nullable.Interface`), []byte(`*any`))
+	in = bytes.ReplaceAll(in, []byte(`nullable.Interface`), []byte(`any`))
 	in = bytes.ReplaceAll(in, []byte(`nullable.HTTPHeader`), []byte(`*http.Header`))
 	in = bytes.ReplaceAll(in, []byte(`nullable.TimeMicrosUnix`), []byte(`*time.Time`))
 	// remove broken fields
@@ -97,6 +97,9 @@ func replaceExternalPackages(in []byte) []byte {
 	in = bytes.ReplaceAll(in, []byte(`type spanRoot struct {`), []byte(`type SpanRoot struct {`))
 	in = bytes.ReplaceAll(in, []byte(`type transactionRoot struct {`), []byte(`type TransactionRoot struct {`))
 	in = bytes.ReplaceAll(in, []byte(`type logRoot struct {`), []byte(`type LogRoot struct {`))
+	// add omitempty json tag
+	in = bytes.ReplaceAll(in, []byte("\"`\n"), []byte(",omitempty\"`\n"))
+	in = bytes.ReplaceAll(in, []byte("\" validate:\""), []byte(",omitempty\" validate:\""))
 	return in
 }
 
