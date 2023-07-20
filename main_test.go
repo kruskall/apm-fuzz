@@ -2,13 +2,16 @@ package main
 
 import (
 	"bytes"
+	"errors"
 	"flag"
 	"io"
 	"net/http"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/kruskall/apm-fuzz/fuzz"
+	"github.com/kruskall/go-fuzz-headers/bytesource"
 )
 
 var (
@@ -26,7 +29,13 @@ func FuzzAPMIntake(f *testing.F) {
 		b, err := fuzz.GenerateIntakeV2Data(input)
 		if err != nil {
 			t.Logf("failed to generate data with input %v: %v", input, err)
-			return
+			if errors.Is(err, bytesource.ErrNotEnoughBytes) {
+				return
+			}
+			if strings.Contains(err.Error(), "json: unsupported value") {
+				return
+			}
+			t.Fatal(err)
 		}
 
 		r := bytes.NewReader(b)
