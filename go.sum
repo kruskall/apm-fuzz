@@ -1,2 +1,2 @@
-github.com/google/gofuzz v1.2.1-0.20221018181003-5dfa3b7056d4 h1:RN7Ds4/uc3lJcMxqmP5egk6obUZ4uS8otaZuOuPJ4wA=
-github.com/google/gofuzz v1.2.1-0.20221018181003-5dfa3b7056d4/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
+github.com/kruskall/go-fuzz-headers v0.0.0-20230720134719-f02011b4205c h1:h1XLXLnwZNXjqdT1wj7mDFvgGf4dePCkGc2vDZuD3IY=
+github.com/kruskall/go-fuzz-headers v0.0.0-20230720134719-f02011b4205c/go.mod h1:hSeJoUeGC3FyfPq0y5sz5kwkbUHhF2/g0euuVjkFE4E=
